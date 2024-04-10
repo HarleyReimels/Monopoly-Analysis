@@ -3,9 +3,14 @@
 
 if __name__ == '__main__':
     import pandas as pd
+    import numpy as np
+    import seaborn as sns
+    import matplotlib.pyplot as plt
     from monopolyVariables import *
 
 
+    d = pd.DataFrame(np.zeros((10,10)))
+    
     # Current position sets the player on the Go spot on the board
     current_position = 0
 
@@ -16,7 +21,7 @@ if __name__ == '__main__':
     doubles = 0
     jail_by_doubles = 0
     
-    # Game will run a total of 10000 times, we can change this value
+    # Game will run a total of 1000 times, we can change this value
     chance_deck = []
     community_deck = []
     games_to_play = 1000
@@ -115,6 +120,35 @@ if __name__ == '__main__':
 
     print(board_df.sort_values(by="Landed", ascending=False))
     print(die_one_df)
-
+    
+    # Create heatmap
+    my_heatmap = create_heat_map(properties_dictionary)
+    print(my_heatmap)
+    
+    # Replace 0 with nan for better representation
+    my_heatmap[my_heatmap == 0] = np.nan
+    
+    # Adjust display size and color
+    fig, ax = plt.subplots(figsize=(8,6))
+    
+    my_cmap = sns.color_palette(palette='Oranges')
+    
+    x_labels = properties_list[0:11]
+    x_labels.reverse()
+    y_labels = properties_list[10:21]
+    y_labels.reverse()
+    
+    
+    # Display heatmap
+    res = sns.heatmap(my_heatmap, linewidths=1, linecolor="black", fmt=".0f", cmap=my_cmap, annot=True, annot_kws={"size":10},
+                xticklabels = x_labels, yticklabels=y_labels)
+    # Stops text from getting cut off
+    plt.tight_layout()
+    # Stops top from getting cut off
+    plt.subplots_adjust(top=0.95)
+    res.set_title(f"{games_to_play} games of monopoly lasting {game_ends} turns per game.")
+    
+    plt.show()
+    
 
     # board_df.to_csv('game1.csv')

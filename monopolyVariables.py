@@ -203,6 +203,53 @@ def create_chance_list():
 def draw_card(card_deck):
     return card_deck.pop()
 
+def create_heat_map(df):
+    import pandas as pd
+    import numpy as np
+    d = pd.DataFrame(np.zeros((11,11)))
+
+    d.iat[0,0] = df["Free Parking"]
+    d.iat[0,1] = df["Kentucky Avenue"]
+    d.iat[0,2] = df["Chance 2"]
+    d.iat[0,3] = df["Indiana Avenue"]
+    d.iat[0,4] = df["Illinois Avenue"]
+    d.iat[0,5] = df["B & O Railroad"]
+    d.iat[0,6] = df["Atlantic Avenue"]
+    d.iat[0,7] = df["Ventnor Avenue"]
+    d.iat[0,8] = df["Water Works"]
+    d.iat[0,9] = df["Marvin Gardens"]
+    d.iat[0,10] = df["Go To Jail"]
+    d.iat[1,10] = df["Pacific Avenue"]
+    d.iat[2,10] = df["North Carolina Avenue"]
+    d.iat[3,10] = df["Community Chest 3"]
+    d.iat[4,10] = df["Pennsylvania Avenue"]
+    d.iat[5,10] = df["Short Line"]
+    d.iat[6,10] = df["Chance 3"]
+    d.iat[7,10] = df["Park Place"]
+    d.iat[8,10] = df["Luxury tax"]
+    d.iat[9,10] = df["Boardwalk"]
+    d.iat[10,10] = df["Go"]
+    d.iat[10,9] = df["Mediterranean Avenue"]
+    d.iat[10,8] = df["Community Chest 1"]
+    d.iat[10,7] = df["Baltic Avenue"]
+    d.iat[10,6] = df["Income Tax"]
+    d.iat[10,5] = df["Reading Railroad"]
+    d.iat[10,4] = df["Oriental Avenue"]
+    d.iat[10,3] = df["Chance 1"]
+    d.iat[10,2] = df["Vermont Avenue"]
+    d.iat[10,1] = df["Connecticut Avenue"]
+    d.iat[10,0] = df["In Jail/Just Visiting"]
+    d.iat[9,0] = df["St. Charles Place"]
+    d.iat[8,0] = df["Electric Company"]
+    d.iat[7,0] = df["States Avenue"]
+    d.iat[6,0] = df["Virginia Avenue"]
+    d.iat[5,0] = df["Pennsylvania Railroad"]
+    d.iat[4,0] = df["St. James Place"]
+    d.iat[3,0] = df["Community Chest 2"]
+    d.iat[2,0] = df["Tennessee Avenue"]
+    d.iat[1,0] = df["New York Avenue"]
+
+    return d
 
 def card_movement(card, card_position):
     if card == "Advance to Boardwalk":
