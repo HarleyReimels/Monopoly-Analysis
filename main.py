@@ -7,9 +7,6 @@ if __name__ == '__main__':
     import seaborn as sns
     import matplotlib.pyplot as plt
     from monopolyVariables import *
-
-
-    d = pd.DataFrame(np.zeros((10,10)))
     
     # Current position sets the player on the Go spot on the board
     current_position = 0
@@ -140,14 +137,14 @@ if __name__ == '__main__':
     
     
     # Display heatmap
-    res = sns.heatmap(my_heatmap, linewidths=1, linecolor="black", fmt=".2f", cmap=my_cmap, annot=True, annot_kws={"size":10},
+    res = sns.heatmap(my_heatmap, linewidths=1, linecolor="black", fmt=".2f", cmap=my_cmap, annot=True, annot_kws={"size":8},
                 xticklabels = x_labels, yticklabels=y_labels)
     # Stops text from getting cut off
     plt.tight_layout()
     # Stops top from getting cut off
     plt.subplots_adjust(top=0.95)
+    for t in res.texts: t.set_text(t.get_text() + "%")
     res.set_title(f"{games_to_play} games of monopoly lasting {game_ends} turns per game.")
-    
     plt.show()
     
 
