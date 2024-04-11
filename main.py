@@ -122,7 +122,7 @@ if __name__ == '__main__':
     print(die_one_df)
     
     # Create heatmap
-    my_heatmap = create_heat_map(properties_dictionary)
+    my_heatmap = create_heat_map(properties_dictionary, game_ends, games_to_play)
     print(my_heatmap)
     
     # Replace 0 with nan for better representation
@@ -130,9 +130,9 @@ if __name__ == '__main__':
     
     # Adjust display size and color
     fig, ax = plt.subplots(figsize=(8,6))
-    
     my_cmap = sns.color_palette(palette='Oranges')
     
+    # Put labels on map
     x_labels = properties_list[0:11]
     x_labels.reverse()
     y_labels = properties_list[10:21]
@@ -140,7 +140,7 @@ if __name__ == '__main__':
     
     
     # Display heatmap
-    res = sns.heatmap(my_heatmap, linewidths=1, linecolor="black", fmt=".0f", cmap=my_cmap, annot=True, annot_kws={"size":10},
+    res = sns.heatmap(my_heatmap, linewidths=1, linecolor="black", fmt=".2f", cmap=my_cmap, annot=True, annot_kws={"size":10},
                 xticklabels = x_labels, yticklabels=y_labels)
     # Stops text from getting cut off
     plt.tight_layout()
